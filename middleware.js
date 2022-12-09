@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { includes } from "lodash";
 
 const isUserRoute = (pathname) => {
     return pathname.startsWith('/api/users');
@@ -17,7 +16,7 @@ export async function middleware(req) {
     const role = req.headers.get("authorization");
     const { pathname } = req.nextUrl;
 
-    if (isUserRoute(pathname) && !includes(["user", "admin", "developer"], role)) {
+    if (isUserRoute(pathname) && role !== "user") {
         return NextResponse.redirect(new URL('/api/auth/unauthorized', req.url));
     }
 

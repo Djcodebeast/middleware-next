@@ -35,7 +35,7 @@ export async function getServerSideProps() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'user',
+            'Authorization': 'admin',
         }
     })
     const result = await response.json()
